@@ -31,3 +31,7 @@ Para completar o fluxo, você pode adicionar um nó de notificação para ser av
 Slack: Para enviar uma mensagem para um canal específico.
 Email: Para receber um e-mail de confirmação.
 Telegram: Para receber uma notificação instantânea.
+
+Um exemplo simples e prático como estou disponibilizando aqui no github e uma imagem sobre uma automatização de postagens automatico no wordpress com formatação via HTML do texto, podemos utilizar IA para gerar imagem, enviar não paenas para wordpress mas para outras plataformas, vemos que o céu é o limite quando se trata de automação e inteligência artificial.
+
+![image](https://github.com/user-attachments/assets/10fa91be-b1c8-4215-a8b8-6d75732683bb)
