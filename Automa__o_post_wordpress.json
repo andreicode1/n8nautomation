@@ -1,0 +1,179 @@
+{
+  "name": "Automação post wordpress",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "ab95db79-ed30-4764-aee0-11dc683ad012",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "title": "={{ $('IA Title').item.json.message.content }}",
+        "additionalFields": {
+          "content": "={{ $json.html }}",
+          "status": "draft"
+        }
+      },
+      "type": "n8n-nodes-base.wordpress",
+      "typeVersion": 1,
+      "position": [
+        1140,
+        0
+      ],
+      "id": "20674975-48ef-46ab-8fe3-69a6c6fc8b17",
+      "name": "Wordpress",
+      "credentials": {
+        "wordpressApi": {
+          "id": "4NiPm4uAMNclmoxM",
+          "name": "Wordpress account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "html": "<!DOCTYPE html>\n\n<html>\n<body>\n  {{ $('IA Title').item.json.message.content }}\n</body>\n  <body>\n    {{ $('Post').item.json.message.content }}\n  </body>\n</html>\n\n<style>\n.container {\n  background-color: #ffffff;\n  text-align: center;\n  padding: 16px;\n  border-radius: 8px;\n}\n\nh1 {\n  color: #ff6d5a;\n  font-size: 24px;\n  font-weight: bold;\n  padding: 8px;\n}\n\nh2 {\n  color: #909399;\n  font-size: 18px;\n  font-weight: bold;\n  padding: 8px;\n}\n</style>\n\n<script>\nconsole.log(\"Hello World!\");\n</script>"
+      },
+      "type": "n8n-nodes-base.html",
+      "typeVersion": 1.2,
+      "position": [
+        880,
+        0
+      ],
+      "id": "c177637c-df38-433e-95e3-6ff23cc72625",
+      "name": "HTML"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "GPT-4O-MINI"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=Monte um titulo com base no texto do blog, como uma fonte arial com tamanho da letra para 20:  {{ $json.message.content }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        500,
+        0
+      ],
+      "id": "22ba9b8d-077e-4985-9a18-41e75ba2f9fc",
+      "name": "IA Title",
+      "credentials": {
+        "openAiApi": {
+          "id": "fWCKoZJneiWf27Qs",
+          "name": "OpenAi account 3"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "GPT-4O-MINI"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "Estabeleça um texto com mil caracteres não podendo ultrapassar esse limite sobre o tema automação n8n.\n\nDentro deste texto preciso que utilize uma fonte arial com o tamanho 12.\n\nforneça a informação das seguintes redes sociais no final do texto\n\ninstagram\nfacebook\nlinkedin\nwhatsapp\n\npara contatos"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        180,
+        0
+      ],
+      "id": "907839b7-06c5-4563-8c03-43cf389ba1f8",
+      "name": "Post",
+      "credentials": {
+        "openAiApi": {
+          "id": "79rKeBLFkt5WCpJ3",
+          "name": "OpenAi account 2"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "Post",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wordpress": {
+      "main": [
+        []
+      ]
+    },
+    "HTML": {
+      "main": [
+        [
+          {
+            "node": "Wordpress",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IA Title": {
+      "main": [
+        [
+          {
+            "node": "HTML",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Post": {
+      "main": [
+        [
+          {
+            "node": "IA Title",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "f6676f6f-cd8f-4c1e-bba0-679baa4726d8",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "e9b0b08fd13d79e389de9ba504056c4886925799da025d5e80021792b8aa1acc"
+  },
+  "id": "H8CpdPbZiYJlHNNX",
+  "tags": []
+}
