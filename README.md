@@ -10,12 +10,14 @@ O primeiro passo em qualquer fluxo de trabalho do n8n é definir um gatilho. Est
 Webhook: O n8n pode expor um webhook que, ao ser acionado (por exemplo, a partir de um sistema de gerenciamento de conteúdo ou de um script externo), inicia o fluxo.
 Cron: Se você deseja publicar em horários específicos ou com uma frequência determinada, um nó de cron pode ser o ideal.
 Monitoramento de Pasta: Se você salva rascunhos em uma pasta específica (local ou em um serviço de nuvem), o n8n pode monitorar essa pasta.
+
 2. Processamento de Dados (Data Processing)
 Após o gatilho, você precisará dos dados da sua postagem. Isso pode envolver:
 
 Nó HTTP Request: Se o conteúdo da sua postagem estiver em uma URL externa (como um arquivo JSON ou Markdown).
 Nó Read File: Se o conteúdo estiver em um arquivo local ou em um serviço de armazenamento.
 Nó Set: Para manipular os dados, extrair o título, conteúdo, tags, etc.
+
 3. Criação da Postagem (WordPress Node)
 Aqui é onde a mágica acontece. Adicione um nó WordPress ao seu fluxo. Configure-o com as credenciais da API do seu WordPress.
 
@@ -25,6 +27,7 @@ Título (Title): Mapeie para o campo que contém o título da sua postagem.
 Conteúdo (Content): Mapeie para o campo com o corpo da sua postagem.
 Status (Status): Você pode definir como "Publish" (Publicar) para publicar imediatamente, ou "Draft" (Rascunho) se quiser revisar antes.
 Categorias e Tags: Seus dados podem incluir categorias e tags, que você pode mapear nos campos correspondentes.
+
 4. Notificação (Notification - Opcional)
 Para completar o fluxo, você pode adicionar um nó de notificação para ser avisado quando a postagem for publicada com sucesso. Isso pode ser via:
 
